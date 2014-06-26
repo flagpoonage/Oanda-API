@@ -13,33 +13,39 @@ namespace Oanda.Sandbox
     {
         private static string BaseAddress = "http://api-sandbox.oanda.com/v1/accounts";
 
-        public static HttpResponseWrapper<UserAccount> CreateTestAccount()
+        public static UserAccount CreateTestAccount()
         {
-            return HttpClient.Post<UserAccount>(new HttpRequestConfiguration()
+            var result = HttpClient.Post<UserAccount>(new HttpRequestConfiguration()
             {
                 RequestAddress = BaseAddress
             });
+
+            return result.ResponseValue;
         }
 
-        public static HttpResponseWrapper<AccountInformation> GetAccountInformation(int accountID)
+        public static AccountInformation GetAccountInformation(int accountID)
         {
-            return HttpClient.Get<AccountInformation>(new HttpRequestConfiguration()
+            var result = HttpClient.Get<AccountInformation>(new HttpRequestConfiguration()
             {
                 RequestAddress = string.Format("{0}/{1}", BaseAddress, accountID)
             });
+
+            return result.ResponseValue;
         }
 
-        public static HttpResponseWrapper<AccountInformationCollection> GetUserAccounts(string username)
+        public static AccountInformation[] GetUserAccounts(string username)
         {
             var qs = new NameValueCollection();
 
             qs.Add("username", username);
 
-            return HttpClient.Get<AccountInformationCollection>(new HttpRequestConfiguration()
+            var result = HttpClient.Get<AccountInformationCollection>(new HttpRequestConfiguration()
             {
                 RequestAddress = BaseAddress,
                 Querystring = qs
             });
+
+            return result.ResponseValue.Accounts;
         }
     }
 }

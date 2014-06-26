@@ -46,13 +46,17 @@
     <Compile Include="Objects\AccountCurrency.cs" />
     <Compile Include="Objects\AccountInformation.cs" />
     <Compile Include="Objects\AccountInformationCollection.cs" />
+    <Compile Include="Objects\InstrumentCollection.cs" />
+    <Compile Include="Objects\InstrumentType.cs" />
+    <Compile Include="Objects\InstrumentFields.cs" />
+    <Compile Include="Objects\InstrumentTypeList.cs" />
     <Compile Include="Objects\UserAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sandbox\Accounts.cs" />
+    <Compile Include="Objects\Instrument.cs" />
+    <Compile Include="Sandbox\Rates.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Rest\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

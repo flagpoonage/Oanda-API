@@ -1,14 +1,6 @@
-﻿using Oanda.Core;
-using Oanda.Objects;
+﻿using Oanda.Objects;
 using Oanda.Sandbox;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OandaConsole
@@ -24,7 +16,7 @@ namespace OandaConsole
         {
             var account = Accounts.CreateTestAccount();
 
-            var result = Accounts.GetAccountInformation(account.ResponseValue.AccountID).ResponseValue;
+            var result = Accounts.GetAccountInformation(account.AccountID);
 
             button1.Text = result.AccountName;
 
@@ -33,10 +25,20 @@ namespace OandaConsole
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var account = Accounts.CreateTestAccount().ResponseValue;
+            var account = Accounts.CreateTestAccount();
+
             var accounts = Accounts.GetUserAccounts(account.Username);
 
-            var i = 0;
+            var instruments = Rates.GetInstrumentList(
+                account.AccountID, 
+                new InstrumentTypeList()
+                { 
+                    InstrumentType.EURNZD,
+                    InstrumentType.AUDCAD,
+                    InstrumentType.EURAUS,
+                    InstrumentType.EURGBP,
+                    InstrumentType.EURUSD 
+                });
         }
     }
 }
